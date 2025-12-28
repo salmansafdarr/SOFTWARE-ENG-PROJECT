@@ -1,0 +1,248 @@
+\documentclass[12pt,a4paper]{article}
+
+% ================= Packages =================
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+% ================= Page Setup =================
+\geometry{margin=1in}
+\onehalfspacing
+
+\begin{document}
+
+% ================= Title Page =================
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+
+{\LARGE \textbf{Software Requirements Specification}}\\[0.5cm]
+{\Large \textbf{Amar Ahmad Khan Academy (AAK Academy)}}\\[1.5cm]
+
+{\large \textbf{ANSI/IEEE Std 830-1984}}\\[2cm]
+
+\textbf{Prepared By}\\[0.8cm]
+
+\begin{tabular}{ll}
+\textbf{Name:} & Salman Safdar \\
+\textbf{Roll No:} & NUM-BSCS-2024-70 \\[0.5cm]
+\textbf{Name:} & Muhammad Haris \\
+\textbf{Roll No:} & NUM-BSCS-2024-49 \\[0.5cm]
+\textbf{Name:} & Farwa Imran \\
+\textbf{Roll No:} & NUM-BSCS-2024-22 \\
+\end{tabular}
+
+\vfill
+
+\textbf{Course: Software Engineering}\\
+\textbf{Namal University Mianwali}\\
+\textbf{Date: \today}
+
+\vfill
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ==================================================
+\section{Introduction}
+
+\subsection{Purpose}
+This Software Requirements Specification (SRS) document provides a complete and detailed description of the functional and non-functional requirements of Amar Ahmad Khan Academy (AAK Academy). The purpose of this document is to serve as a reference for developers, designers, project managers, and stakeholders to understand system behavior and constraints.
+
+\subsection{Scope}
+AAK Academy is a web-based Learning Management System (LMS) that enables students to enroll in courses, access learning materials, attend live online classes, submit assignments, attempt quizzes, and make online payments. Faculty members can manage course content, assessments, and student performance, while administrators oversee system configuration, reporting, and user management.
+
+\subsection{System Benefits}
+\begin{itemize}
+    \item Centralized online learning platform
+    \item Improved accessibility to educational resources
+    \item Efficient academic management
+    \item Secure and transparent fee handling
+\end{itemize}
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\begin{itemize}
+    \item SRS – Software Requirements Specification
+    \item AAK Academy – Amar Ahmad Khan Academy
+    \item Admin – System Administrator
+    \item JWT – JSON Web Token
+    \item NFR – Non-Functional Requirement
+    \item LMS – Learning Management System
+\end{itemize}
+
+\subsection{References}
+\begin{itemize}
+    \item ANSI/IEEE Std 830-1984, IEEE Guide for Software Requirements Specifications
+\end{itemize}
+
+% ==================================================
+\section{Overall Description}
+
+\subsection{Product Perspective}
+AAK Academy is a standalone web-based application. It interacts with external services such as a payment gateway and a video conferencing platform. The system follows a client-server architecture and uses a centralized database hosted on cloud infrastructure.
+
+\subsection{Product Functions}
+\begin{itemize}
+    \item User registration, authentication, and authorization
+    \item Course creation and content distribution
+    \item Assignment and quiz management
+    \item Online live class scheduling and participation
+    \item Online payment processing
+    \item Performance monitoring and reporting
+\end{itemize}
+
+\subsection{User Classes and Characteristics}
+\begin{itemize}
+    \item Students: Basic computer and internet usage skills
+    \item Faculty: Familiarity with teaching tools and assessments
+    \item Administrators: Technical and system management expertise
+\end{itemize}
+
+\subsection{Operating Environment}
+\begin{itemize}
+    \item Web browsers (Chrome, Firefox, Edge)
+    \item Operating Systems: Windows, macOS, Linux, Android, iOS
+    \item Cloud-based hosting environment
+\end{itemize}
+
+\subsection{Constraints}
+\begin{itemize}
+    \item Continuous internet connectivity required
+    \item Dependency on third-party APIs
+    \item Compliance with data protection laws
+\end{itemize}
+
+\subsection{Assumptions and Dependencies}
+\begin{itemize}
+    \item Users have valid internet access
+    \item External services remain available
+    \item Institutional policies remain unchanged
+\end{itemize}
+
+% ==================================================
+\section{Functional Requirements}
+
+\subsection{Authentication and Authorization}
+\begin{itemize}
+    \item FR-001: Users shall be able to register using email and password
+    \item FR-002: The system shall authenticate users using JWT
+    \item FR-003: The system shall enforce role-based access control
+    \item FR-004: Users shall be able to reset passwords
+\end{itemize}
+
+\subsection{Student Functions}
+\begin{itemize}
+    \item FR-005: Students shall access enrolled course materials
+    \item FR-006: Students shall submit assignments online
+    \item FR-007: Students shall attempt quizzes
+    \item FR-008: Students shall view grades and performance reports
+    \item FR-009: Students shall make online fee payments
+\end{itemize}
+
+\subsection{Faculty Functions}
+\begin{itemize}
+    \item FR-010: Faculty shall upload learning materials
+    \item FR-011: Faculty shall create and evaluate assignments and quizzes
+    \item FR-012: Faculty shall schedule and manage live classes
+\end{itemize}
+
+\subsection{Administrator Functions}
+\begin{itemize}
+    \item FR-013: Administrators shall manage users
+    \item FR-014: Administrators shall configure courses and fees
+    \item FR-015: Administrators shall generate system and academic reports
+\end{itemize}
+
+% ==================================================
+\section{Non-Functional Requirements}
+
+\subsection{Performance Requirements}
+\begin{itemize}
+    \item NFR-001: The system shall support at least 1000 concurrent users
+    \item NFR-002: Page load time shall not exceed 3 seconds
+\end{itemize}
+
+\subsection{Security Requirements}
+\begin{itemize}
+    \item NFR-003: All communication shall use HTTPS
+    \item NFR-004: Sensitive data shall be encrypted
+    \item NFR-005: Authentication tokens shall be securely managed
+\end{itemize}
+
+\subsection{Reliability Requirements}
+\begin{itemize}
+    \item NFR-006: System uptime shall be at least 99.5\%
+    \item NFR-007: Automated daily backups shall be performed
+\end{itemize}
+
+\subsection{Usability Requirements}
+\begin{itemize}
+    \item NFR-008: The interface shall be user-friendly
+    \item NFR-009: Minimal training shall be required for users
+\end{itemize}
+
+\subsection{Maintainability Requirements}
+\begin{itemize}
+    \item NFR-010: Modular system design
+    \item NFR-011: Proper documentation of code and APIs
+\end{itemize}
+
+% ==================================================
+\section{External Interface Requirements}
+
+\subsection{Hardware Interfaces}
+\begin{itemize}
+    \item Desktop computers
+    \item Tablets and smartphones
+\end{itemize}
+
+\subsection{Software Interfaces}
+\begin{itemize}
+    \item Payment Gateway API
+    \item Zoom API
+    \item MongoDB Database
+    \item Node.js Backend
+    \item React.js Frontend
+\end{itemize}
+
+\subsection{Communication Interfaces}
+\begin{itemize}
+    \item HTTPS protocol
+    \item JSON-based data exchange
+\end{itemize}
+
+% ==================================================
+\section{Appendices}
+
+\subsection{Appendix A: Context Diagram}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{context diagram.PNG}
+\end{center}
+
+\subsection{Appendix B: Use Case Diagram}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{usecase diagram.jpeg}
+\end{center}
+
+\subsection{Appendix C: Technology Stack}
+\begin{tabular}{|l|l|l|}
+\hline
+Component & Technology & Purpose \\ \hline
+Frontend & React.js & User Interface \\ \hline
+Backend & Node.js & Server Logic \\ \hline
+Database & MongoDB & Data Storage \\ \hline
+Payment & Stripe API & Online Payments \\ \hline
+Video & Zoom API & Live Classes \\ \hline
+\end{tabular}
+
+\subsection{Appendix D: Glossary}
+\begin{itemize}
+    \item Student – Enrolled learner
+    \item Faculty – Instructor
+    \item Admin – System manager
+\end{itemize}
+
+\end{document}
