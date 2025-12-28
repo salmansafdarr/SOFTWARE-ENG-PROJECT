@@ -1,6 +1,6 @@
 **🎓 AAK Academy Management System**
 
-AAK Academy is an innovative e-learning platform designed to revolutionize the way students at the academy engage with educational content. With a seamless user interface and a collection of interactive modules, the platform aims to enhance student learning experiences through a technology-driven environment. It provides an array of learning materials, including tutorials, quizzes, and progress tracking, to ensure academic excellence.
+AAK Academy is an innovative e-learning platform designed to revolutionize the way students at the academy engage with educational content. With a seamless user interface and a collection of interactive modules, the platform aims to enhance student learning experiences through a technology-driven environment. It provides an array of learning materials, including tutorials, quizzes, and progress tracking, to ensure academic excellence. 
 
 **Project Features:**
 
