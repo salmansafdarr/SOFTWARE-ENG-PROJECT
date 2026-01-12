@@ -1,0 +1,2013 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{float}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{AAK Academy Management System - SRS}
+\fancyhead[R]{Version 2.0}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Software Requirements Specification (SRS)} \\\\
+       \large \\
+       \textbf{AAK Academy Management System} \\\\
+       \normalsize \textbf{Academic and Administrative Automation Platform} \\\\
+       \vspace{0.5cm}
+       \small Department of Computer Science \\
+       \small Namal University, Mianwali}
+\author{
+    \textbf{Team Members:} \\\\
+    Salman Safdar (NUM-BSCS-2024-70) \\\\
+    Muhammad Haris (NUM-BSCS-2024-49) \\\\
+    Farwa Imran (NUM-BSCS-2024-22) \\\\
+    \vspace{0.5cm}
+    \textbf{Course:} Software Engineering (CSC-225) \\\\\
+    \textbf{Instructor:} Asiya Batool \\\\
+    \textbf{Semester:} Fall 2025 \\\\
+    \textbf{Submission Date:} February 21, 2026
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+
+\subsubsection{Overview of the Document}
+This Software Requirements Specification (SRS) document provides a comprehensive description of the AAK Academy Management System. The document serves as the primary reference for all stakeholders involved in the development, testing, and deployment phases of the project. It establishes a clear understanding of the system's functionalities, constraints, and quality attributes, ensuring alignment between technical teams and the requirement provider.
+
+\subsubsection{Purpose of the SRS}
+The purpose of this SRS document is to:
+\begin{itemize}
+    \item Define all functional and non-functional requirements for the AAK Academy Management System in detail
+    \item Serve as a baseline for project planning, design, implementation, and validation activities
+    \item Provide clear specifications for quality assurance teams to develop comprehensive test cases
+    \item Enable future maintenance teams to understand system architecture and design decisions
+    \item Document assumptions, dependencies, and constraints that influence system development
+\end{itemize}
+
+\subsubsection{Intended Audience}
+This document addresses the needs of multiple stakeholder groups:
+
+\textbf{Development Team}
+\begin{itemize}
+    \item Software Engineers: To implement features according to specified requirements
+    \item System Architects: To design scalable and maintainable system architecture
+    \item UI/UX Designers: To create intuitive interfaces aligned with user needs
+    \item Database Administrators: To design efficient data storage and retrieval mechanisms
+\end{itemize}
+
+\textbf{Quality Assurance Team}
+\begin{itemize}
+    \item QA Engineers: To develop test cases and validation strategies
+    \item Testing Specialists: To ensure system meets all specified requirements
+\end{itemize}
+
+\textbf{Project Management}
+\begin{itemize}
+    \item Project Managers: To plan resources, timelines, and deliverables
+    \item Requirement Provider (Mr. Ammar Ahmad Khan): To validate that requirements are correctly captured
+\end{itemize}
+
+\textbf{End Users}
+\begin{itemize}
+    \item Students: Matric and Intermediate level students using the platform for academic purposes
+    \item Teachers: Faculty members managing courses, assignments, and assessments
+    \item Administrators: Academy staff members managing system operations and data
+\end{itemize}
+
+\subsection{Scope}
+
+\subsubsection{Product Identification}
+AAK Academy Management System is a web-based platform designed to automate academic and administrative operations for AAK Academy, which offers Matric and Intermediate level programs. The system provides a comprehensive solution for student enrollment, subject selection, fee management, assignment distribution, quiz administration, and performance tracking.
+
+\subsubsection{Product Features}
+
+\textbf{What AAK Academy Management System Will Do:}
+\begin{itemize}
+    \item Provide automated student registration and profile management
+    \item Enable subject selection with automatic fee calculation and discount application
+    \item Support teachers in creating, distributing, and grading assignments and quizzes
+    \item Offer comprehensive administrative controls for managing students, teachers, subjects, and classes
+    \item Implement automated discount policies (10\% for 3 subjects, 20\% for 6 subjects)
+    \item Provide faculty information pages showcasing teacher profiles and qualifications
+    \item Generate academic reports and performance analytics
+    \item Support live class integration via Zoom with attendance tracking
+    \item Implement secure payment processing for fee collection
+    \item Offer role-based dashboards for students, teachers, and administrators
+\end{itemize}
+
+\textbf{What AAK Academy Management System Will Not Do (Initial Release):}
+\begin{itemize}
+   
+    \item Include artificial intelligence-based grading or recommendations
+    \item Support multiple languages (English only in initial release)
+    \item Integrate with external school management systems
+    \item Provide real-time video conferencing (uses Zoom integration)
+    \item Include parent portals or parental controls
+    \item Support offline functionality
+    \item Offer social networking features between students
+\end{itemize}
+
+\subsubsection{Application of the Software}
+AAK Academy Management System addresses critical gaps in academy operations by providing:
+\begin{itemize}
+    \item \textbf{Operational Efficiency:} Automates manual processes reducing administrative workload
+    \item \textbf{Financial Accuracy:} Eliminates errors in fee calculation and discount application
+    \item \textbf{Academic Transparency:} Provides clear tracking of assignments, quizzes, and results
+    \item \textbf{Accessibility:} Enables 24/7 access to academic materials and information
+    \item \textbf{Communication Improvement:} Streamlines interaction between students, teachers, and administrators
+    \item \textbf{Data Management:} Centralizes academic and administrative data for better decision making
+\end{itemize}
+
+\subsubsection{Goals and Benefits}
+\begin{itemize}
+    \item \textbf{Automation:} Reduce manual work by 70\% through process automation
+    \item \textbf{Accuracy:} Minimize errors in fee calculation, grade recording, and data management
+    \item \textbf{Accessibility:} Provide anytime, anywhere access to academic resources
+    \item \textbf{Transparency:} Improve visibility into academic progress and administrative processes
+    \item \textbf{Efficiency:} Streamline operations saving time for teachers and administrators
+    \item \textbf{Data-Driven Decisions:} Enable analytics-based improvements in teaching and administration
+    \item \textbf{Cost Reduction:} Decrease administrative costs through digital transformation
+\end{itemize}
+
+\subsection{Overview}
+
+\subsubsection{Document Structure}
+This SRS document follows the IEEE 830 standard and is organized into the following major sections:
+\begin{enumerate}
+    \item Introduction: Provides document purpose, scope, definitions, and overview
+    \item Overall Description: Describes product perspective, user characteristics, constraints, and assumptions
+    \item Specific Requirements: Details functional requirements, interface specifications, and system features
+    \item System Features: Enumerates core features with detailed descriptions
+    \item External Interface Requirements: Specifies user, hardware, software, and communication interfaces
+    \item Non-Functional Requirements: Covers performance, security, reliability, and usability requirements
+    \item Other Requirements: Addresses legal, regulatory, and operational considerations
+    \item Appendices: Contains supplementary materials including diagrams, glossary, and references
+\end{enumerate}
+
+\subsubsection{Organization of the Document}
+Each section builds upon previous sections to provide progressively detailed specifications:
+\begin{itemize}
+    \item Sections are numbered hierarchically for easy reference and navigation
+    \item Cross-references link related requirements and specifications
+    \item Technical terms are defined in the glossary to ensure consistent understanding
+    \item Diagrams and tables supplement textual descriptions for clarity
+    \item Requirements are uniquely identified with tags (e.g., FR-001, NFR-001) for traceability
+\end{itemize}
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+
+\begin{tabularx}{\textwidth}{|l|X|}
+    \hline
+    \textbf{Term/Acronym} & \textbf{Definition} \\
+    \hline
+    AAK Academy & Ammar Ahmad Khan Academy - The educational institution using the system \\
+    \hline
+    SRS & Software Requirements Specification - a document describing system requirements \\
+    \hline
+    RP & Requirement Provider - Mr. Ammar Ahmad Khan, the stakeholder defining system requirements \\
+    \hline
+    Matric & Secondary School Certificate (9th-10th grade) program offered by the academy \\
+    \hline
+    Intermediate & Higher Secondary School Certificate (11th-12th grade) program \\
+    \hline
+    UI/UX & User Interface/User Experience - design aspects affecting user interaction with the system \\
+    \hline
+    Admin & Administrator - privileged user with system management capabilities \\
+    \hline
+    Student & Regular user enrolled in Matric or Intermediate programs \\
+    \hline
+    Teacher & Faculty member responsible for course delivery and assessment \\
+    \hline
+    LMS & Learning Management System - platform for delivering educational content \\
+    \hline
+    IEEE 830 & IEEE Recommended Practice for Software Requirements Specifications standard \\
+    \hline
+    HTTPS & Hypertext Transfer Protocol Secure - encrypted communication protocol \\
+    \hline
+    DBMS & Database Management System - software for managing structured data \\
+    \hline
+    HTML5 & HyperText Markup Language version 5 - standard for web content structure \\
+    \hline
+    CSS3 & Cascading Style Sheets version 3 - stylesheet language for web presentation \\
+    \hline
+    JavaScript & Programming language for interactive web functionality \\
+    \hline
+    Responsive Design & Design approach ensuring optimal display across various device screen sizes \\
+    \hline
+    Session Management & System mechanism for tracking authenticated user interactions \\
+    \hline
+    CRUD Operations & Create, Read, Update, Delete - fundamental data manipulation operations \\
+    \hline
+    MVP & Minimum Viable Product - initial version with core features \\
+    \hline
+    GPA & Grade Point Average - numerical representation of academic performance \\
+    \hline
+    API & Application Programming Interface - set of protocols for building software \\
+    \hline
+    Zoom & Video conferencing platform integrated for live classes \\
+    \hline
+\end{tabularx}
+
+\subsection{References}
+
+\subsubsection{Standards}
+\begin{enumerate}
+    \item IEEE Std 830-1998: IEEE Recommended Practice for Software Requirements Specifications
+    \item IEEE Std 1012-2016: IEEE Standard for System, Software, and Hardware Verification and Validation
+\end{enumerate}
+
+\subsubsection{Technical Documentation}
+\begin{enumerate}
+    \item HTML5 Specification: \url{https://html.spec.whatwg.org/}
+    \item CSS3 Standards: \url{https://www.w3.org/Style/CSS/}
+    \item JavaScript ES6+ Documentation: \url{https://developer.mozilla.org/en-US/docs/Web/JavaScript}
+    \item MySQL Documentation: \url{https://dev.mysql.com/doc/}
+  
+\end{enumerate}
+
+\subsubsection{Project Documentation}
+\begin{enumerate}
+    \item AAK Academy Project Proposal (Milestone 1)
+    \item Requirement Provider Agreement
+    \item Meeting Minutes with Requirement Provider
+    \item Project GitHub Repository: \url{https://github.com/}
+\end{enumerate}
+
+\subsubsection{Development Tools}
+\begin{enumerate}
+    \item Visual Studio Code: \url{https://code.visualstudio.com}
+    \item Git Version Control: \url{https://git-scm.com}
+    \item XAMPP/WAMP: Local development environment
+    \item Draw.io: Diagram creation tool
+\end{enumerate}
+
+\newpage
+
+\section{Overall Description}
+
+\subsection{Product Perspective}
+
+AAK Academy Management System is an independent web-based platform designed to modernize academic and administrative operations of AAK Academy. Unlike generic school management systems, it is specifically tailored for Matric and Intermediate programs with automated discount calculations and integrated academic tools.
+
+\subsubsection{System Context}
+
+The system operates as a standalone platform with the following contextual relationships:
+
+\textbf{Relationship with Traditional Academy Operations}
+AAK Academy Management System serves as a digital transformation tool replacing manual processes:
+\begin{itemize}
+    \item Replaces paper-based enrollment and registration processes
+    \item Automates fee calculation and discount application
+    \item Digitizes assignment distribution and submission
+    \item Provides online quiz creation and grading
+    \item Centralizes academic records and performance data
+\end{itemize}
+
+\textbf{Integration Possibilities}
+While initially standalone, the architecture allows future integration with:
+\begin{itemize}
+    \item Payment gateways for online fee collection
+    \item Zoom API for live class integration
+  
+\end{itemize}
+
+\subsubsection{System Interfaces}
+
+The system comprises several interconnected components:
+
+\textbf{User Interface Layer}
+\begin{itemize}
+    \item Web browser-based interface supporting modern browsers (Chrome, Firefox, Safari, Edge)
+    \item Responsive design adapting to desktop, tablet, and mobile screen sizes
+    \item Three distinct interfaces for Students, Teachers, and Administrators
+    \item Intuitive navigation structure with role-based dashboards
+\end{itemize}
+
+\textbf{Application Layer}
+\begin{itemize}
+    \item Business logic for user authentication and authorization
+    \subject selection and fee calculation engine
+    \item Assignment and quiz management module
+    \item Performance tracking and analytics module
+    \item Content management system for administrators
+    \item Report generation module
+\end{itemize}
+
+\textbf{Data Layer}
+\begin{itemize}
+    \item Relational database storing user profiles, academic data, financial records, and content
+    \item File storage system for assignment submissions and learning materials
+    \item Session management for maintaining user state
+    \item Backup and recovery systems
+\end{itemize}
+
+\textbf{External Interfaces}
+\begin{itemize}
+    \item Zoom API integration for live classes
+    \item Payment gateway integration for fee collection
+  
+\end{itemize}
+
+\subsubsection{User Classes and Characteristics}
+
+The system defines three primary user classes with distinct characteristics and access levels:
+
+\textbf{Student (Regular User)}
+\begin{itemize}
+    \item \textbf{Primary Goal:} Access academic materials, submit assignments, attempt quizzes, track performance
+    \item \textbf{Technical Proficiency:} Basic to intermediate computer literacy
+    \item \textbf{Usage Frequency:} Daily during academic sessions
+    \item \textbf{Educational Background:} Secondary school education
+    \item \textbf{Access Requirements:} Active enrollment in academy programs
+    \item \textbf{Key Features Used:} Dashboard, subject selection, assignment submission, quiz attempts, grade viewing
+\end{itemize}
+
+\textbf{Teacher (Faculty User)}
+\begin{itemize}
+    \item \textbf{Primary Goal:} Manage courses, create assessments, grade submissions, track student progress
+    \item \textbf{Technical Proficiency:} Intermediate computer literacy
+    \item \textbf{Responsibilities:} Course delivery, assessment creation, student evaluation, feedback provision
+    \item \textbf{Usage Pattern:} Daily during teaching periods
+    \item \textbf{Subject Expertise:} Specialized knowledge in specific subjects
+    \item \textbf{Access Requirements:} Faculty credentials with subject assignments
+    \item \textbf{Key Features Used:} Course management, assignment creation, quiz administration, grading tools, student analytics
+\end{itemize}
+
+\textbf{Administrator}
+\begin{itemize}
+    \item \textbf{Primary Goal:} Manage system operations, users, academic programs, and financial aspects
+    \item \textbf{Technical Proficiency:} Intermediate to advanced computer literacy
+    \item \textbf{Responsibilities:} User management, system configuration, report generation, financial oversight
+    \item \textbf{Usage Pattern:} Daily monitoring with periodic administrative tasks
+    \item \textbf{Access Requirements:} Pre-configured credentials with elevated privileges
+    \item \textbf{Key Features Used:} User management, subject management, class scheduling, fee management, report generation, system settings
+\end{itemize}
+
+\subsection{Product Functions}
+
+The core functions of AAK Academy Management System are organized into four major functional areas:
+
+\subsubsection{Student Management Functions}
+\begin{itemize}
+    \item \textbf{Registration and Enrollment:} New student registration with profile creation
+    \item \textbf{Subject Selection:} Course selection with automatic fee calculation
+    \item \textbf{Discount Application:} Automatic discount calculation based on subject count
+    \item \textbf{Academic Access:} Access to learning materials, assignments, and quizzes
+    \item \textbf{Performance Tracking:} Grade viewing and progress monitoring
+    \item \textbf{Profile Management:} Personal information updates and password management
+\end{itemize}
+
+\subsubsection{Teacher Management Functions}
+\begin{itemize}
+    \item \textbf{Course Assignment:} Subject and class allocation to teachers
+    \item \textbf{Content Management:} Uploading learning materials and resources
+    \item \textbf{Assessment Creation:} Designing assignments and quizzes with various question types
+    \item \textbf{Grading System:} Online grading with feedback provision
+    \item \textbf{Student Monitoring:} Tracking student participation and performance
+    \item \textbf{Communication Tools:} Announcing deadlines and important information
+\end{itemize}
+
+
+
+\subsubsection{Administrative Management Functions}
+\begin{itemize}
+
+\item \textbf{Class Scheduling:} Timetable creation and management
+\item \textbf{Attendance Tracking:} Monitoring student and teacher attendance
+    \item \textbf{User Management:} Comprehensive control over all user accounts
+    \item \textbf{Grade Management:} Setting up grading scales and evaluation criteria
+    \item \textbf{Attendance Tracking:} Monitoring student and teacher attendance
+    \item \textbf{System Configuration:} Setting up academic sessions, terms, and policies
+    \item \textbf{Financial Management:} Fee collection tracking and financial reporting
+    \item \textbf{Report Generation:} Academic, financial, and operational reports
+    \item \textbf{Backup and Recovery:} System data backup and restoration
+    \item \textbf{Security Management:} Access control and security configuration
+\end{itemize}
+
+\subsubsection{Specialized Functions}
+\begin{itemize}
+    \item \textbf{Automated Discount System:} 
+    \begin{itemize}
+        \item 10\% discount automatically applied when selecting 3 subjects
+        \item 20\% discount automatically applied when selecting 6 subjects
+        \item Real-time fee calculation during subject selection
+    \end{itemize}
+    
+    \item \textbf{Live Class Integration:}
+    \begin{itemize}
+        \item Zoom integration for virtual classrooms
+        \item Automatic attendance marking
+        \item Recorded session storage and access
+    \end{itemize}
+\end{itemize}
+
+\subsection{User Characteristics}
+
+\subsubsection{Educational Level and Background}
+
+AAK Academy Management System targets users with diverse educational backgrounds:
+
+\textbf{Student Users}
+\begin{itemize}
+    \item \textbf{Education Level:} Matric (9th-10th grade) or Intermediate (11th-12th grade)
+  
+    \item \textbf{Computer Literacy:} Basic proficiency with web browsers and digital interfaces
+    \item \textbf{Language Proficiency:} English and Urdu comprehension
+    \item \textbf{Academic Focus:} Science, Arts, or Commerce streams
+\end{itemize}
+
+\textbf{Teacher Users}
+\begin{itemize}
+    \item \textbf{Education Level:} Bachelor's degree or higher in relevant subjects
+    \item \textbf{Teaching Experience:} Varies from novice to experienced educators
+    \item \textbf{Technical Skills:} Moderate proficiency with educational technology
+    \item \textbf{Subject Expertise:} Specialized knowledge in teaching subjects
+\end{itemize}
+
+\textbf{Administrator Users}
+\begin{itemize}
+    \item \textbf{Education Level:} Bachelor's degree in administration or related fields
+    \item \textbf{Administrative Experience:} Experience in educational administration
+    \item \textbf{Technical Skills:} Good proficiency with management systems
+    \item \textbf{Management Capabilities:} Experience in team and resource management
+\end{itemize}
+
+\subsubsection{Technical Proficiency}
+
+\textbf{Student Technical Requirements}
+\begin{itemize}
+    \item Ability to navigate web browsers and fill online forms
+    \item Understanding of basic web interactions (clicking, scrolling, form submission)
+    \item File upload/download capabilities for assignments
+    \item Email access for account notifications and password recovery
+    \item No programming or advanced technical knowledge required
+\end{itemize}
+
+\textbf{Teacher Technical Requirements}
+\begin{itemize}
+    \item Moderate computer skills including file management
+    \item Understanding of content upload and management
+    \item Ability to use online assessment tools
+    \item Basic troubleshooting skills for technical issues
+    \item Experience with video conferencing tools (Zoom)
+\end{itemize}
+
+\textbf{Administrator Technical Requirements}
+\begin{itemize}
+    \item Intermediate computer skills including system administration
+    \item Understanding of database concepts and reporting
+    \item Ability to configure system settings and policies
+    \item Experience with user management and access control
+    \item Basic knowledge of network and security concepts
+\end{itemize}
+
+\subsubsection{Accessibility Considerations}
+
+The platform incorporates inclusive design principles:
+\begin{itemize}
+    \item High contrast text for visual clarity
+    \item Keyboard navigation support for users with mobility constraints
+    \option for text resizing without breaking layout
+    \item Clear language avoiding unnecessary jargon
+    \item Consistent navigation patterns across all interfaces
+    \item Alternative text for images and graphical elements
+\end{itemize}
+
+
+
+
+\subsubsection{Software Interface Constraints}
+
+\textbf{Technology Stack Limitations}
+\begin{itemize}
+    \item Development constrained to open-source technologies to minimize licensing costs
+    \item Framework selection influenced by team expertise and available documentation
+    \item Database choice limited by hosting environment capabilities
+    \item Integration with Zoom API for live classes
+    \item Payment gateway integration constraints based on available options
+\end{itemize}
+
+\textbf{Authentication Constraints}
+\begin{itemize}
+    \item Email verification dependent on email server reliability
+    \item Password recovery mechanisms limited to email-based reset
+    \item No integration with external identity providers in initial release
+    \item Session management constrained by server resources
+\end{itemize}
+
+\textbf{Integration Constraints}
+\begin{itemize}
+    \item Zoom API integration subject to Zoom's terms and rate limits
+    \item Payment gateway integration dependent on third-party availability
+   
+\end{itemize}
+
+\subsubsection{Design and Implementation Constraints}
+
+\textbf{Development Timeline}
+\begin{itemize}
+    \item Project must be completed within academic semester timeline
+    \item Milestone deadlines impose incremental delivery requirements
+    \item Testing and refinement time limited by project schedule
+    \item Academic calendar constraints for feature deployment
+\end{itemize}
+
+
+\newpage
+
+\section{Specific Requirements}
+
+This section provides detailed specifications for all functional and interface requirements of the AAK Academy Management System. Each requirement is uniquely identified and described with sufficient detail for design and implementation.
+
+\subsection{Functional Requirements}
+
+\subsubsection{User Authentication and Authorization}
+
+\textbf{FR-001: Student Registration}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow new students to create accounts through a registration form
+    \item \textbf{Inputs:} Full name, father's name, date of birth, gender, contact number, email address, address, previous academic details, program selection (Matric/Intermediate), password, confirm password
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item Student accesses registration page
+        \item Student fills mandatory fields with validation checks
+        \item System validates email format, password strength, and age requirements
+        \item System creates account in "Pending Verification" status
+        \item System sends confirmation email to student
+        \item Administrator receives notification of new registration
+    \end{enumerate}
+    \item \textbf{Outputs:} Account created with pending status, email notifications sent, registration ID generated
+    \item \textbf{Validation Rules:}
+    \begin{itemize}
+        \item Email must be unique in system
+        \item Password minimum 8 characters with alphanumeric combination
+        \item Contact number must be valid format
+        \item Age must be appropriate for selected program
+        \item All mandatory fields must be completed
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-002: Teacher Registration }
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow teachers to create faculty accounts
+    \item \textbf{Inputs:} Teacher name, qualifications, experience, specialization subjects, contact information, email, temporary password
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item Teacher accesses faculty management section
+        \item Teacher fills faculty registration form
+        \item System creates faculty account with "Active" status
+        \item System sends account details to teacher's email
+        \item Teacher receives credentials for first login
+    \end{enumerate}
+    \item \textbf{Outputs:} Teacher account created, credentials emailed, subject assignments recorded
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-003: User Login}
+\begin{itemize}
+    \item \textbf{Description:} The system shall authenticate users based on their role (Student/Teacher/Admin)
+    \item \textbf{Inputs:} Email/Username, password, user type selection
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item User enters credentials on appropriate login page
+        \item System verifies credentials against database
+        \item System checks account status and role
+        \item If valid, system creates user session and redirects to role-specific dashboard
+        \item If account pending, system displays appropriate message
+        \item If credentials invalid, system displays error message
+    \end{enumerate}
+    \item \textbf{Outputs:} Authenticated session created, appropriate dashboard displayed
+    \item \textbf{Security:} Failed login attempts tracked, account locked after 5 consecutive failures
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-004: Role-Based Access Control}
+\begin{itemize}
+    \item \textbf{Description:} The system shall enforce role-based permissions for all system functions
+    \item \textbf{Roles and Permissions:}
+    \begin{itemize}
+        \item \textbf{Student:} Access to personal dashboard, subject selection, assignments, quizzes, grades
+        \item \textbf{Teacher:} Access to assigned courses, student management, assessment creation, grading
+        \item \textbf{Admin:} Full system access including user management, configuration, reports
+    \end{itemize}
+    \item \textbf{Process:} System checks user role before granting access to any function or page
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-005: Password Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive password management features
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Password change with current password verification
+        \item Password reset via email verification
+        \item Password strength enforcement (minimum 8 characters, mixed case, numbers)
+     
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-006: Session Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall maintain secure user sessions with appropriate timeouts
+    \item \textbf{Parameters:}
+    \begin{itemize}
+        \item Session timeout after 30 minutes of inactivity for students
+        \item Session timeout after 60 minutes of inactivity for teachers
+        \item Session timeout after 120 minutes of inactivity for administrators
+        \item Warning displayed 5 minutes before timeout
+        \item Automatic logout on browser close
+        \item Single session per user (prevents multiple concurrent logins)
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\subsubsection{Student Module Requirements}
+
+\textbf{FR-007: Student Dashboard}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide personalized dashboard for each student
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item Personal information summary
+        \item Current enrolled subjects with progress indicators
+        \item Upcoming assignments and quizzes with deadlines
+        \item Recent grades and performance summary
+        \item Notifications for important announcements
+        \item Quick access to key functions
+        \item Academic calendar view
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-008: Subject Selection with Automatic Fee Calculation}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow students to select subjects with real-time fee calculation
+    \item \textbf{Process:}
+    \begin{enumerate}
+        \item Student accesses subject selection page
+        \item System displays available subjects for selected program
+        \item Student selects subjects (minimum 3, maximum 7 for Matric; minimum 3, maximum 6 for Intermediate)
+        \item System calculates total fee in real-time
+        \item System applies automatic discounts:
+        \begin{itemize}
+            \item 10\% discount if 3 subjects selected
+            \item 20\% discount if 6 subjects selected
+        \end{itemize}
+        \item Student confirms selection
+        \item System generates fee invoice
+    \end{enumerate}
+    \item \textbf{Outputs:} Subject selection confirmation, fee calculation details, invoice generation
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-009: Learning Materials Access}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide access to course materials for enrolled subjects
+    \item \textbf{Materials Types:}
+    \begin{itemize}
+        \item Lecture notes and presentations
+        \item Reference books and readings
+        \item Video lectures and tutorials
+        \item Practice exercises and worksheets
+        \item Past papers and solutions
+    \end{itemize}
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Organized by subject and topic
+        \item Download and offline access options
+        \item Search functionality within materials
+        \item Progress tracking for completed materials
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-010: Assignment Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall manage assignment submission and tracking
+    \item \textbf{Student Features:}
+    \begin{itemize}
+        \item View assigned assignments with deadlines
+        \item Download assignment instructions and resources
+        \item Upload completed assignments (multiple file formats supported)
+        \item View submission status and confirmation
+        \item Receive notifications for upcoming deadlines
+        \item View graded assignments with teacher feedback
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-011: Online Quiz System}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide online quiz taking capability
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item View available quizzes with time limits
+        \item Attempt quizzes with various question types (MCQs, true/false, short answer)
+        \item Timer display during quiz attempt
+        \item Auto-submission when time expires
+        \item Immediate score display for objective questions
+        \item Quiz attempt history and performance analysis
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-012: Grade and Performance Tracking}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive grade tracking and performance analysis
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item View grades for assignments, quizzes, and exams
+        \item Subject-wise performance breakdown
+        \item Progress graphs and charts
+        \item Comparison with class averages
+        \item GPA calculation and tracking
+        \item Academic standing and recommendations
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-013: Live Class Participation}
+\begin{itemize}
+    \item \textbf{Description:} The system shall integrate with Zoom for live classes
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item View scheduled live classes for enrolled subjects
+        \item Join Zoom meetings with one-click access
+        \item Automatic attendance marking based on participation
+        \item Access to recorded class sessions
+        \item Class materials and resources linked to sessions
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-014: Fee Payment and Tracking}
+\begin{itemize}
+    \item \textbf{Description:} The system shall manage fee payment and tracking
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item View fee structure and payment schedule
+        \item Check payment status and history
+        \item Download fee receipts and invoices
+        \item View applied discounts and adjustments
+        \item Payment reminders and due date notifications
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\subsubsection{Teacher Module Requirements}
+
+\textbf{FR-015: Teacher Dashboard}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive dashboard for teachers
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item Assigned subjects and classes overview
+        \item Student enrollment statistics
+        \item Upcoming assignments to grade
+        \item Recent student performance alerts
+        \item Quick access to teaching tools
+        \item Announcement posting capability
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-016: Course Content Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow teachers to manage course content
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Upload and organize learning materials
+        \item Create and manage course modules
+        \item Schedule content releases based on academic calendar
+        \item Version control for content updates
+        \item Content usage analytics
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-017: Assignment Creation and Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow teachers to create and manage assignments
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Create assignments with detailed instructions
+        \item Set submission deadlines and late submission policies
+        \item Attach supporting files and resources
+        \item Assign to specific classes or students
+        \item Track submission status and send reminders
+        \item Download all submissions in batch
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-018: Online Quiz Creation}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow teachers to create online quizzes
+    \item \textbf{Question Types Supported:}
+    \begin{itemize}
+        \item Multiple Choice Questions (single and multiple correct)
+        \item True/False questions
+        \item Short answer questions
+        \item Essay-type questions
+        \item Matching questions
+        \item Fill in the blanks
+    \end{itemize}
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Question bank management
+        \item Random question selection for different students
+        \item Time limits and availability windows
+        \item Automatic grading for objective questions
+        \item Performance analytics for each question
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-019: Grading and Evaluation}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive grading tools
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Grade assignments with rubric-based scoring
+        \item Provide detailed feedback comments
+        \item Grade quizzes (manual grading for subjective questions)
+        \item Calculate and assign final grades
+        \item Grade distribution analysis
+        \item Export grades to standard formats
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-020: Student Performance Monitoring}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow teachers to monitor student performance
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item View individual student profiles and progress
+        \item Track assignment submission patterns
+        \item Monitor quiz and exam performance
+        \item Identify at-risk students based on performance
+        \item Generate performance reports for parents/administrators
+        \item Compare performance across different sections
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-021: Live Class Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow teachers to manage live classes
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Schedule Zoom meetings for classes
+        \item Generate and share meeting links
+        \item Take attendance from Zoom participants
+        \item Upload recorded sessions
+        \item Track student participation and engagement
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-022: Communication Tools}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide communication tools for teachers
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Send announcements to students
+        \item Individual and group messaging
+        \item Discussion forums for each subject
+        \item Notification system for important updates
+        \item Parent communication interface (if implemented)
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\subsubsection{Administrator Module Requirements}
+
+\textbf{FR-023: Admin Dashboard}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive admin dashboard
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item System overview and health metrics
+        \item User statistics (total students, teachers, active users)
+        \item Academic statistics (enrollments, subject selections)
+        \item Financial overview (fee collection, outstanding amounts)
+        \item Recent system activities and alerts
+        \item Quick action buttons for common tasks
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-024: Student Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide complete student management capabilities
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item View and search all student records
+        \item Approve/reject new student registrations
+        \item Update student information and status
+        \item Manage student enrollments and subject selections
+        \item Track student academic progress
+        \item Generate student ID cards and certificates
+        \item Export student data to various formats
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-025: Teacher Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide complete teacher management capabilities
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Create and manage teacher accounts
+        \item Assign subjects and classes to teachers
+        \item Track teacher workload and assignments
+        \item Monitor teacher performance and student feedback
+        \item Manage teacher schedules and availability
+        \item Generate teacher contracts and documents
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-026: Academic Program Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow management of academic programs
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Create and manage Matric and Intermediate programs
+        \item Set credit hours and course requirements
+        \item Configure academic calendar and terms
+        \item Manage class schedules and timetables
+        \item Set grading scales and evaluation criteria
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-027: Subject and Course Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow management of subjects and courses
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Create and update subject details
+        \item Define subject prerequisites and co-requisites
+        \item Set subject fees and credit values
+        \item Assign teachers to subjects
+        \item Track subject enrollment statistics
+        \item Manage course content and materials
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-028: Fee Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive fee management
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Define fee structures for programs and subjects
+        \item Configure discount policies and rules
+        \item Generate and manage fee invoices
+        \item Track fee payments and outstanding amounts
+        \item Process refunds and adjustments
+        \item Generate financial reports and statements
+    \end{itemize}
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-029: Automated Discount System}
+\begin{itemize}
+    \item \textbf{Description:} The system shall implement automated discount calculations
+    \item \textbf{Discount Rules:}
+    \begin{itemize}
+        \item 10\% discount automatically applied when student selects 3 subjects
+        \item 20\% discount automatically applied when student selects 6 subjects
+        \item Discounts calculated based on base fee before any other adjustments
+        \item Discount application visible during subject selection process
+        \item Discount details included in fee invoices and receipts
+    \end{itemize}
+    \item \textbf{Configuration:} Admin can modify discount percentages and thresholds
+    \item \textbf{Priority:} High
+\end{itemize}
+
+\textbf{FR-030: Report Generation}
+\begin{itemize}
+    \item \textbf{Description:} The system shall generate various academic and administrative reports
+    \item \textbf{Report Types:}
+    \begin{itemize}
+        \item Student enrollment reports
+        \item Academic performance reports
+        \item Teacher workload reports
+        \item Financial reports and statements
+        \item Attendance and participation reports
+        \item System usage and activity reports
+    \end{itemize}
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Customizable report parameters and filters
+        \item Export to PDF, Excel, and CSV formats
+        \item Scheduled report generation and distribution
+        \item Report templates and customization
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-031: Faculty Information Page Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall allow management of faculty information pages
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Create and update teacher profiles for public viewing
+        \item Display teacher qualifications, experience, and expertise
+        \item Showcase achievements and certifications
+        \item Include contact information and availability
+        \item Organize faculty by subject and department
+        \item Allow teachers to update certain profile information
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-032: System Configuration and Settings}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive configuration options
+    \item \textbf{Configurable Settings:}
+    \begin{itemize}
+        \item Academic session and term settings
+        \item Grading scales and evaluation criteria
+        \item Attendance policies and requirements
+        \item Notification and alert settings
+        \item System security and access controls
+        \item Integration settings (Zoom, payment gateways)
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-033: Backup and Recovery Management}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide data backup and recovery capabilities
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Schedule automatic database backups
+        \item Manual backup initiation option
+        \item Backup storage management
+        \item Data recovery and restoration procedures
+        \item Backup integrity verification
+        \item Export/import functionality for data migration
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\subsubsection{System-Wide Requirements}
+
+\textbf{FR-034: Notification System}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive notification capabilities
+    \item \textbf{Notification Types:}
+    \begin{itemize}
+        \item Email notifications for important events
+        \item In-system notifications and alerts
+        \item Deadline reminders and warnings
+        \item System announcements and updates
+    \end{itemize}
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Customizable notification preferences
+        \item Notification history and tracking
+        \item Notification templates
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-035: Search Functionality}
+\begin{itemize}
+    \item \textbf{Description:} The system shall provide comprehensive search capabilities
+    \item \textbf{Searchable Entities:}
+    \begin{itemize}
+        \item Students by name, ID, or other attributes
+        \item Teachers by name, subject, or qualifications
+        \item Courses and subjects
+        \item Learning materials and resources
+        \item Assignments and quizzes
+        \item Notifications and announcements
+    \end{itemize}
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Advanced search with multiple criteria
+        \item Search results filtering and sorting
+        \item Quick search from any page
+        \item Search history and saved searches
+    \end{itemize}
+    \item \textbf{Priority:} Medium
+\end{itemize}
+
+\textbf{FR-036: Audit Trail and Logging}
+\begin{itemize}
+    \item \textbf{Description:} The system shall maintain comprehensive activity logs
+    \item \textbf{Logged Activities:}
+    \begin{itemize}
+        \item User login and logout events
+        \item Data creation, modification, and deletion
+        \item Grade changes and academic updates
+        \item Financial transactions and fee adjustments
+        \item System configuration changes
+        \item Security-related events
+    \end{itemize}
+    \item \textbf{Features:}
+    \begin{itemize}
+        \item Detailed timestamp and user information
+        \item Exportable log files
+        \item Search and filter capabilities
+        \item Automated log rotation and archiving
+    \end{itemize}
+    \item \textbf{Priority:} Low
+\end{itemize}
+
+\subsection{External Interface Requirements}
+
+\subsubsection{User Interface Requirements}
+
+\textbf{UI-001: General UI Principles}
+\begin{itemize}
+    \item \textbf{Design Philosophy:} Clean, professional, education-focused interface
+    \item \textbf{Color Scheme:} Academic colors (blues, greens, neutrals) with high contrast for readability
+    \item \textbf{Typography:} Clear, readable fonts; minimum 12pt for body text on desktop, 14pt on mobile
+    \item \textbf{Responsiveness:} Fully responsive design supporting:
+    \begin{itemize}
+        \item Desktop: 1920x1080 to 1366x768
+        \item Tablet: 1024x768 to 768x1024
+        \item Mobile: 375x667 to 414x896
+    \end{itemize}
+    \item \textbf{Navigation:} Consistent navigation patterns across all user roles
+    \item \textbf{Loading States:} Clear loading indicators for all operations
+    \item \textbf{Feedback:} Immediate visual feedback for all user actions
+\end{itemize}
+
+\textbf{UI-002: Student Interface Design}
+\begin{itemize}
+    \item \textbf{Layout:} Dashboard-centric design with quick access to key functions
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item Header with logo, user profile, and notifications
+        \item Sidebar navigation for academic sections
+        \item Main content area with cards and widgets
+        \item Footer with academy information and links
+    \end{itemize}
+    \item \textbf{Key Pages:}
+    \begin{itemize}
+        \item Dashboard with academic overview
+        \item Subject selection with visual progress
+        \item Assignment submission with drag-and-drop
+        \item Quiz interface with clear timer and navigation
+        \item Grade viewing with visualizations
+    \end{itemize}
+    \item \textbf{Visual Style:} Youthful but professional, with clear icons and visuals
+\end{itemize}
+
+\textbf{UI-003: Teacher Interface Design}
+\begin{itemize}
+    \item \textbf{Layout:} Task-oriented design with emphasis on productivity
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item Header with quick action buttons
+        \item Multi-level navigation for courses and classes
+        \item Workspace area with tabbed interfaces
+        \item Right sidebar for notifications and quick tools
+    \end{itemize}
+    \item \textbf{Key Pages:}
+    \begin{itemize}
+        \item Course management with drag-and-drop organization
+        \item Assignment creation with rich text editor
+        \item Quiz builder with question bank interface
+        \item Grading interface with rubrics and feedback
+        \item Analytics dashboard with charts and reports
+    \end{itemize}
+    \item \textbf{Visual Style:} Professional and efficient, with data visualization elements
+\end{itemize}
+
+\textbf{UI-004: Admin Interface Design}
+\begin{itemize}
+    \item \textbf{Layout:} Dashboard with comprehensive overview and management tools
+    \item \textbf{Components:}
+    \begin{itemize}
+        \item Top navigation with system-wide controls
+        \item Left sidebar with management sections
+        \item Main content area with data tables and forms
+        \item Right panel with quick stats and alerts
+    \end{itemize}
+    \item \textbf{Key Pages:}
+    \begin{itemize}
+        \item User management with bulk operations
+        \item Academic configuration with visual workflows
+        \item Financial management with transaction views
+        \item Report generation with parameter controls
+        \item System settings with categorization
+    \end{itemize}
+    \item \textbf{Visual Style:} Professional and authoritative, with emphasis on data and control
+\end{itemize}
+
+
+
+\subsubsection{Hardware Interface Requirements}
+
+\textbf{HW-001: Client Device Requirements}
+\begin{itemize}
+    \item \textbf{Minimum Specifications:}
+    \begin{itemize}
+        \item Processor: 1.5 GHz dual-core processor
+        \item RAM: 2 GB
+        \item Display: 1024x768 resolution
+        \item Internet: 2 Mbps broadband connection
+        \item Browser: Chrome 80+, Firefox 75+, Safari 12+, Edge 80+
+        \item Storage: 500 MB free space for downloads
+    \end{itemize}
+    \item \textbf{Recommended Specifications:}
+    \begin{itemize}
+        \item Processor: 2.0 GHz quad-core processor
+        \item RAM: 4 GB or more
+        \item Display: 1366x768 resolution or higher
+        \item Internet: 5 Mbps broadband connection
+        \item Browser: Latest versions of modern browsers
+        \item Storage: 1 GB free space for downloads
+    \end{itemize}
+    \item \textbf{Mobile Requirements:}
+    \begin{itemize}
+        \item iOS: Version 12.0 or higher
+        \item Android: Version 8.0 or higher
+        \item Screen: 4.7 inches or larger
+        \item Browser: Latest Chrome or Safari
+    \end{itemize}
+\end{itemize}
+
+\textbf{HW-002: Server Requirements}
+\begin{itemize}
+    \item \textbf{Web Server:}
+    \begin{itemize}
+        \item CPU: 4 cores minimum, 8 cores recommended
+        \item RAM: 8 GB minimum, 16 GB recommended
+        \item Storage: 100 GB SSD minimum
+        \item Bandwidth: 100 Mbps minimum, 1 Gbps recommended
+        \item Operating System: Linux (Ubuntu 20.04 LTS or CentOS 8)
+        \item Web Server: Apache 2.4+ or Nginx 1.18+
+    \end{itemize}
+    \item \textbf{Database Server:}
+    \begin{itemize}
+        \item CPU: 4 cores minimum
+        \item RAM: 8 GB minimum
+        \item Storage: 200 GB minimum (with growth planning)
+        \item Database: MySQL 8.0+ or MariaDB 10.5+
+    \end{itemize}
+    \item \textbf{Backup Storage:}
+    \begin{itemize}
+        \item Separate storage for backups
+        \item Minimum 500 GB capacity
+        \item Secure offsite storage option
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Software Interface Requirements}
+
+
+\textbf{SI-002: Browser Compatibility}
+\begin{itemize}
+    \item \textbf{Primary Browsers:}
+    \begin{itemize}
+        \item Google Chrome 80+
+        \item Mozilla Firefox 75+
+        \item Apple Safari 12+
+        \item Microsoft Edge 80+
+    \end{itemize}
+    \item \textbf{Feature Support:}
+    \begin{itemize}
+        \item HTML5 support required
+        \item CSS3 support required
+        \item JavaScript ES6+ support required
+        \item Cookie and local storage support required
+    \end{itemize}
+    \item \textbf{Mobile Browsers:}
+    \begin{itemize}
+        \item Mobile Chrome 80+
+        \item Mobile Safari 12+
+        \item Samsung Internet 12+
+    \end{itemize}
+\end{itemize}
+
+\textbf{SI-003: Third-Party Integration Interfaces}
+\begin{itemize}
+    \item \textbf{Zoom Integration:}
+    \begin{itemize}
+        \item Zoom REST API v2
+        \item OAuth 2.0 authentication
+        \item Webhook integration for events
+        \item Meeting creation and management APIs
+    \end{itemize}
+    \item \textbf{Payment Gateway Integration:}
+    \begin{itemize}
+        \item Standard payment APIs (Easypaisa, Jazzcash, etc.)
+        \item Secure payment processing
+        \item Transaction status webhooks
+        \item Receipt generation
+    \end{itemize}
+    \item \textbf{Email Service Integration:}
+    \begin{itemize}
+        \item SMTP protocol support
+        \item Email template management
+        \item Bulk email sending
+        \item Delivery tracking
+    \end{itemize}
+  
+\end{itemize}
+
+
+\newpage
+
+\section{System Features}
+
+This section describes the major features of AAK Academy Management System, organized by functional area. Each feature includes detailed description, stimulus/response sequences, and associated functional requirements.
+
+\subsection{Student Enrollment and Registration System}
+
+\subsubsection{Description and Priority}
+Comprehensive system for student enrollment including registration, verification, subject selection, and fee calculation. This is the entry point for all students and includes the automated discount system.
+
+\textbf{Priority:} High
+
+\subsubsection{Stimulus/Response Sequences}
+
+1. \textbf{Stimulus:} Prospective student visits academy website and clicks "Apply Now"
+
+2. \textbf{Response:} System displays online registration form with multiple sections
+
+3. \textbf{Stimulus:} Student fills personal information, academic background, and program selection
+
+4. \textbf{Response:} System validates inputs in real-time, shows errors immediately
+
+5. \textbf{Stimulus:} Student submits completed application
+
+6. \textbf{Response:} System creates account in "Pending Verification" status, sends confirmation email
+
+7. \textbf{Stimulus:} Admin reviews application in admin panel
+
+8. \textbf{Response:} System shows complete application with verification checklist
+
+9. \textbf{Stimulus:} Admin approves application
+
+10. \textbf{Response:} System activates account, sends welcome email with login credentials
+
+11. \textbf{Stimulus:} Student logs in for first time
+
+12. \textbf{Response:} System prompts for subject selection with fee calculator
+
+13. \textbf{Stimulus:} Student selects subjects (e.g., 6 subjects)
+
+14. \textbf{Response:} System automatically applies 20\% discount, shows final fee
+
+15. \textbf{Stimulus:} Student confirms selection
+
+16. \textbf{Response:} System generates enrollment confirmation and fee invoice
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-001: Student Registration
+    \item FR-008: Subject Selection with Automatic Fee Calculation
+    \item FR-029: Automated Discount System
+    \item FR-024: Student Management (Admin side)
+\end{itemize}
+
+\subsection{Academic Content Delivery System}
+
+\subsubsection{Description and Priority}
+Platform for delivering learning materials, assignments, quizzes, and live classes to students. This is the core academic functionality of the system.
+
+\textbf{Priority:} High
+
+\subsubsection{Stimulus/Response Sequences}
+
+1. \textbf{Stimulus:} Teacher uploads new lecture notes for Mathematics chapter 3
+
+2. \textbf{Response:} System processes upload, generates thumbnails for PDF, makes available to enrolled students
+
+3. \textbf{Stimulus:} Student accesses Mathematics course page
+
+4. \textbf{Response:} System displays organized content by chapters and topics
+
+5. \textbf{Stimulus:} Student clicks on chapter 3 materials
+
+6. \textbf{Response:} System shows lecture notes, video links, practice problems
+
+7. \textbf{Stimulus:} Teacher creates new assignment with deadline in 1 week
+
+8. \textbf{Response:} System notifies enrolled students via email and dashboard alerts
+
+9. \textbf{Stimulus:} Student submits assignment before deadline
+
+10. \textbf{Response:} System confirms submission, updates student's submission status
+
+11. \textbf{Stimulus:} Teacher grades assignment and provides feedback
+
+12. \textbf{Response:} System updates student grade, notifies student of feedback
+
+13. \textbf{Stimulus:} Teacher schedules live class for difficult topic
+
+14. \textbf{Response:} System creates Zoom meeting, adds to class calendar
+
+15. \textbf{Stimulus:} Student joins live class 5 minutes before start
+
+16. \textbf{Response:} System marks attendance, provides access to Zoom meeting
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-009: Learning Materials Access
+    \item FR-010: Assignment Management
+    \item FR-011: Online Quiz System
+    \item FR-013: Live Class Participation
+    \item FR-016: Course Content Management
+    \item FR-017: Assignment Creation and Management
+    \item FR-018: Online Quiz Creation
+    \item FR-019: Grading and Evaluation
+    \item FR-021: Live Class Management
+\end{itemize}
+
+\subsection{Performance Tracking and Analytics System}
+
+\subsubsection{Description and Priority}
+Comprehensive system for tracking student performance, generating analytics, and providing insights to students, teachers, and administrators.
+
+\textbf{Priority:} Medium
+
+\subsubsection{Stimulus/Response Sequences}
+
+1. \textbf{Stimulus:} Student completes quiz on Physics chapter 5
+
+2. \textbf{Response:} System records score, updates performance database
+
+3. \textbf{Stimulus:} Student views "My Performance" dashboard
+
+4. \textbf{Response:} System generates visual charts showing progress across subjects
+
+5. \textbf{Stimulus:} Teacher accesses class performance report
+
+6. \textbf{Response:} System shows distribution of grades, identifies struggling students
+
+7. \textbf{Stimulus:} Admin requests term-end performance report
+
+8. \textbf{Response:} System compiles data from all courses, generates comprehensive report
+
+9. \textbf{Stimulus:} System detects student with declining performance
+
+10. \textbf{Response:} System alerts teacher and suggests intervention
+
+11. \textbf{Stimulus:} Parent requests progress report (if parent portal implemented)
+
+12. \textbf{Response:} System generates student-specific report with teacher comments
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-012: Grade and Performance Tracking
+    \item FR-020: Student Performance Monitoring
+    \item FR-030: Report Generation
+\end{itemize}
+
+\subsection{Fee Management and Financial System}
+
+\subsubsection{Description and Priority}
+System for managing all financial aspects including fee calculation, discount application, payment tracking, and financial reporting.
+
+\textbf{Priority:} High
+
+\subsubsection{Stimulus/Response Sequences}
+
+1. \textbf{Stimulus:} Admin configures fee structure for new academic year
+
+2. \textbf{Response:} System applies new fees to all relevant programs and subjects
+
+3. \textbf{Stimulus:} Student selects subjects during enrollment
+
+4. \textbf{Response:} System calculates fee, applies automatic discounts based on subject count
+
+5. \textbf{Stimulus:} System approaches fee due date for student
+
+6. \textbf{Response:} System sends automatic reminder email 7 days before due date
+
+7. \textbf{Stimulus:} Student makes partial payment
+
+8. \textbf{Response:} System updates balance, generates receipt, sends confirmation
+
+9. \textbf{Stimulus:} Admin views fee collection report for current month
+
+10. \textbf{Response:} System shows collected amounts, outstanding balances, comparison to previous periods
+
+11. \textbf{Stimulus:} Student requests fee concession due to financial hardship
+
+12. \textbf{Response:} System routes request to admin, tracks approval process
+
+13. \textbf{Stimulus:} Admin approves special discount for student
+
+14. \textbf{Response:} System applies discount, recalculates balance, notifies student
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-008: Subject Selection with Automatic Fee Calculation
+    \item FR-014: Fee Payment and Tracking
+    \item FR-028: Fee Management
+    \item FR-029: Automated Discount System
+    \item FR-030: Report Generation
+\end{itemize}
+
+\subsection{Faculty Management and Information System}
+
+\subsubsection{Description and Priority}
+System for managing teacher information, assignments, and public faculty profiles.
+
+\textbf{Priority:} Medium
+
+\subsubsection{Stimulus/Response Sequences}
+
+1. \textbf{Stimulus:} Admin adds new Physics teacher to system
+
+2. \textbf{Response:} System creates teacher account, sends setup instructions
+
+3. \textbf{Stimulus:} Admin assigns Physics teacher to Class 10 sections A and B
+
+4. \textbf{Response:} System updates teacher workload, notifies teacher of new assignments
+
+5. \textbf{Stimulus:} Teacher updates professional qualifications
+
+6. \textbf{Response:} System updates teacher profile, flags for admin verification if needed
+
+7. \textbf{Stimulus:} Prospective student views faculty page
+
+8. \textbf{Response:} System displays organized faculty listings with photos, qualifications, subjects
+
+9. \textbf{Stimulus:} Admin publishes teacher achievement
+
+10. \textbf{Response:} System adds to faculty page highlights, notifies relevant stakeholders
+
+11. \textbf{Stimulus:} Teacher requests leave through system
+
+12. \textbf{Response:} System routes to admin, suggests substitute teachers based on subject expertise
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-002: Teacher Registration by Admin
+    \item FR-025: Teacher Management
+    \item FR-031: Faculty Information Page Management
+\end{itemize}
+
+\subsection{Administrative Control and Reporting System}
+
+\subsubsection{Description and Priority}
+Comprehensive system for academy administration including user management, system configuration, reporting, and monitoring.
+
+\textbf{Priority:} High
+
+\subsubsection{Stimulus/Response Sequences}
+
+1. \textbf{Stimulus:} Admin logs into system
+
+2. \textbf{Response:} System displays admin dashboard with key metrics and alerts
+
+3. \textbf{Stimulus:} Admin needs to enroll 50 new students from recent admissions
+
+4. \textbf{Response:} System provides bulk import tool with validation
+
+5. \textbf{Stimulus:} Admin configures new academic session
+
+6. \textbf{Response:} System provides setup wizard for terms, holidays, grading periods
+
+7. \textbf{Stimulus:} Board requests student transcripts
+
+8. \textbf{Response:} System generates standardized transcripts with academy seal
+
+9. \textbf{Stimulus:} System detects unusual login patterns
+
+10. \textbf{Response:} System alerts admin, suggests security review
+
+11. \textbf{Stimulus:} Admin schedules automated backup
+
+12. \textbf{Response:} System confirms schedule, shows backup history
+
+13. \textbf{Stimulus:} Accreditation team requests operational data
+
+14. \textbf{Response:} System generates comprehensive reports on enrollment, performance, operations
+
+\subsubsection{Functional Requirements}
+\begin{itemize}
+    \item FR-023: Admin Dashboard
+    \item FR-024: Student Management
+    \item FR-025: Teacher Management
+    \item FR-026: Academic Program Management
+    \item FR-027: Subject and Course Management
+    \item FR-030: Report Generation
+    \item FR-032: System Configuration and Settings
+    \item FR-033: Backup and Recovery Management
+    \item FR-036: Audit Trail and Logging
+\end{itemize}
+
+\newpage
+
+\section{Non-Functional Requirements}
+
+\subsection{Performance Requirements}
+
+\subsubsection{Response Time Requirements}
+\begin{itemize}
+    \item \textbf{NFR-001:} Page load time shall not exceed 3 seconds for 95\% of page loads under normal load
+    \item \textbf{NFR-002:} Search operations shall return results within 2 seconds for datasets up to 10,000 records
+    \item \textbf{NFR-003:} Report generation shall complete within 30 seconds for standard reports
+   
+    \item \textbf{NFR-005:} File uploads shall process within acceptable time based on file size (1MB within 5 seconds on 2Mbps connection)
+\end{itemize}
+
+\subsubsection{Throughput Requirements}
+\begin{itemize}
+    \item \textbf{NFR-006:} System shall support minimum 500 concurrent users
+    \item \textbf{NFR-007:} System shall handle peak loads of 1000 concurrent users during enrollment periods
+    \item \textbf{NFR-008:} Web server shall handle 100 requests per second
+    \item \textbf{NFR-009:} Database shall support 50 concurrent read/write operations
+\end{itemize}
+
+
+\subsubsection{Scalability Requirements}
+\begin{itemize}
+    \item \textbf{NFR-014:} System shall scale horizontally to support up to 5000 students
+    \item \textbf{NFR-015:} Database shall handle growth to 100,000 academic records
+    \item \textbf{NFR-016:} Storage system shall support expansion to 1TB without architectural changes
+    \item \textbf{NFR-017:} Application architecture shall support load balancing across multiple servers
+\end{itemize}
+
+\subsection{Security Requirements}
+
+\subsubsection{Authentication Security}
+\begin{itemize}
+    \item \textbf{NFR-018:} Passwords shall be stored using bcrypt hashing algorithm with minimum cost factor of 10
+    \item \textbf{NFR-019:} Accounts shall be locked after 5 consecutive failed login attempts
+    \item \textbf{NFR-020:} Session timeout shall be enforced based on user role and sensitivity
+    \item \textbf{NFR-021:} Password policies shall enforce minimum 8 characters with mixed case and numbers
+\end{itemize}
+
+\subsubsection{Authorization and Access Control}
+\begin{itemize}
+    \item \textbf{NFR-023:} Role-based access control shall be implemented for all system functions
+    \item \textbf{NFR-024:} Principle of least privilege shall be enforced
+    \item \textbf{NFR-025:} Administrative functions shall require re-authentication for sensitive operations
+    \item \textbf{NFR-026:} User shall only access their own data unless explicitly granted permission
+    \item \textbf{NFR-027:} Audit logs shall track all permission changes and access violations
+\end{itemize}
+
+\subsubsection{Data Security}
+\begin{itemize}
+    \item \textbf{NFR-028:} All sensitive data shall be encrypted at rest using AES-256 encryption
+    \item \textbf{NFR-029:} All data transmissions shall use TLS 1.2 or higher
+    \item \textbf{NFR-030:} Database connections shall use SSL encryption
+    \item \textbf{NFR-031:} File uploads shall be scanned for malware before storage
+    \item \textbf{NFR-032:} Backup data shall be encrypted and stored securely
+\end{itemize}
+
+\subsubsection{Input Validation and Sanitization}
+\begin{itemize}
+    \item \textbf{NFR-033:} All user inputs shall be validated both client-side and server-side
+    \item \textbf{NFR-034:} SQL injection prevention shall be implemented using parameterized queries
+    \item \textbf{NFR-035:} Cross-site scripting (XSS) protection shall be implemented through output encoding
+    \item \textbf{NFR-036:} File uploads shall be restricted to approved file types and sizes
+    \item \textbf{NFR-037:} CSRF tokens shall be implemented for all state-changing operations
+\end{itemize}
+
+\subsubsection{Audit and Logging}
+\begin{itemize}
+    \item \textbf{NFR-038:} All authentication attempts shall be logged with IP address and timestamp
+    \item \textbf{NFR-039:} All data modifications shall be logged with before/after values
+    \item \textbf{NFR-040:} Grade changes shall require additional authorization and be fully audited
+    \item \textbf{NFR-041:} Financial transactions shall have complete audit trails
+    \item \textbf{NFR-042:} Logs shall be retained for minimum 1 year for security analysis
+\end{itemize}
+
+\subsection{Reliability and Availability Requirements}
+
+\subsubsection{Availability Requirements}
+\begin{itemize}
+    \item \textbf{NFR-043:} System shall maintain 99\% uptime during academic periods (7am-10pm)
+    \item \textbf{NFR-044:} Scheduled maintenance shall be announced 48 hours in advance
+    \item \textbf{NFR-045:} Unscheduled downtime shall not exceed 4 hours per month
+    \item \textbf{NFR-046:} System shall have disaster recovery plan with RTO of 24 hours
+    \item \textbf{NFR-047:} Data recovery point objective shall be maximum 1 hour of data loss
+\end{itemize}
+
+\subsubsection{Reliability Requirements}
+\begin{itemize}
+    \item \textbf{NFR-048:} Mean Time Between Failures (MTBF) shall exceed 720 hours (30 days)
+    \item \textbf{NFR-049:} Mean Time To Repair (MTTR) shall be less than 2 hours for critical failures
+    \item \textbf{NFR-050:} System shall have automatic failover for critical components
+    \item \textbf{NFR-051:} Database shall have replication for high availability
+    \item \textbf{NFR-052:} Error rate shall not exceed 1\% of all transactions
+\end{itemize}
+
+\subsubsection{Backup and Recovery}
+\begin{itemize}
+    \item \textbf{NFR-053:} Full system backups shall be performed weekly
+    \item \textbf{NFR-054:} Incremental backups shall be performed daily
+    \item \textbf{NFR-055:} Backup restoration shall be tested quarterly
+    \item \textbf{NFR-056:} Backups shall be stored in geographically separate location
+    \item \textbf{NFR-057:} Backup retention shall be minimum 90 days
+\end{itemize}
+
+\subsection{Usability Requirements}
+
+\subsubsection{User Interface Usability}
+\begin{itemize}
+    \item \textbf{NFR-058:} System shall achieve 85\% satisfaction rating in user acceptance testing
+    \item \textbf{NFR-059:} New students shall be able to complete registration within 10 minutes
+    \item \textbf{NFR-060:} Teachers shall be able to create a quiz within 15 minutes
+    \item \textbf{NFR-061:} Common tasks shall require maximum 3 clicks from dashboard
+    \item \textbf{NFR-062:} Error messages shall be clear and suggest corrective actions
+\end{itemize}
+
+\subsubsection{Accessibility Requirements}
+\begin{itemize}
+    \item \textbf{NFR-063:} System shall comply with WCAG 2.1 Level AA accessibility standards
+    \item \textbf{NFR-064:} All images shall have appropriate alt text
+    \item \textbf{NFR-065:} System shall be fully navigable by keyboard
+    \item \textbf{NFR-066:} Color contrast shall meet WCAG requirements
+    \item \textbf{NFR-067:} Text shall be resizable up to 200\% without breaking layout
+\end{itemize}
+
+\subsubsection{Documentation and Help}
+\begin{itemize}
+    \item \textbf{NFR-068:} Context-sensitive help shall be available for all major functions
+    \item \textbf{NFR-069:} User manuals shall be available in downloadable PDF format
+    \item \textbf{NFR-070:} Video tutorials shall be provided for complex tasks
+    \item \textbf{NFR-071:} FAQ section shall address common user questions
+    \item \textbf{NFR-072:} Support contact information shall be easily accessible
+\end{itemize}
+
+\subsection{Maintainability Requirements}
+
+\subsubsection{Code Maintainability}
+\begin{itemize}
+    \item \textbf{NFR-073:} Code shall follow consistent naming conventions and coding standards
+    \item \textbf{NFR-074:} Code documentation shall cover all major functions and modules
+    \item \textbf{NFR-075:} Code complexity shall be managed with modular design
+    \item \textbf{NFR-076:} Technical debt shall be tracked and managed
+\end{itemize}
+
+\subsubsection{System Maintainability}
+\begin{itemize}
+    \item \textbf{NFR-077:} System shall support hot deployment for minor updates
+    \item \textbf{NFR-078:} Configuration shall be externalized for easy updates
+    \item \textbf{NFR-079:} Database migrations shall be scripted and versioned
+    \item \textbf{NFR-080:} Monitoring shall provide early warning of issues
+\end{itemize}
+
+\subsubsection{Extensibility}
+\begin{itemize}
+    \item \textbf{NFR-081:} System architecture shall support addition of new modules
+    \item \textbf{NFR-082:} API shall be designed for future integration needs
+    \item \textbf{NFR-083:} Database schema shall support future enhancements
+    \item \textbf{NFR-084:} Plugin architecture shall be considered for additional features
+\end{itemize}
+
+\subsection{Operational Requirements}
+
+
+
+\subsubsection{Monitoring Requirements}
+\begin{itemize}
+    \item \textbf{NFR-089:} System health shall be monitored 24/7
+    \item \textbf{NFR-090:} Performance metrics shall be collected and analyzed
+    \item \textbf{NFR-091:} Alerts shall be configured for critical issues
+    \item \textbf{NFR-092:} Usage statistics shall be tracked for capacity planning
+\end{itemize}
+
+\subsubsection{Support Requirements}
+\begin{itemize}
+    \item \textbf{NFR-093:} Help desk system shall be integrated for user support
+    \item \textbf{NFR-094:} Common issues shall have documented resolutions
+    \item \textbf{NFR-095:} Support response time shall be within 24 hours for non-critical issues
+    \item \textbf{NFR-096:} Emergency support shall be available during academic hours
+\end{itemize}
+
+\newpage
+
+\section{Other Requirements}
+
+\subsection{Development Requirements}
+
+\subsubsection{Development Methodology}
+\begin{itemize}
+    \item \textbf{OR-001:} Project shall follow Agile methodology with 2-week sprints
+    \item \textbf{OR-002:} Version control shall be maintained using Git with feature branching
+    \item \textbf{OR-003:} Code reviews shall be conducted for all major changes
+    \item \textbf{OR-004:} Continuous integration shall be implemented with automated testing
+\end{itemize}
+
+\subsubsection{Documentation Requirements}
+\begin{itemize}
+    \item \textbf{OR-005:} Comprehensive technical documentation shall be maintained
+    \item \textbf{OR-006:} API documentation shall be generated using OpenAPI/Swagger
+    \item \textbf{OR-007:} User manuals shall be created for all user roles
+    \item \textbf{OR-008:} Deployment and operations documentation shall be comprehensive
+\end{itemize}
+
+\subsubsection{Testing Requirements}
+\begin{itemize}
+    \item \textbf{OR-009:} Unit testing shall achieve 80\% code coverage for critical modules
+    \item \textbf{OR-010:} Integration testing shall validate all system components
+    \item \textbf{OR-011:} User acceptance testing shall involve actual academy users
+    \item \textbf{OR-012:} Performance testing shall simulate peak load conditions
+    \item \textbf{OR-013:} Security testing shall include vulnerability scanning
+\end{itemize}
+
+\subsubsection{Quality Assurance}
+\begin{itemize}
+    \item \textbf{OR-014:} Code quality metrics shall be tracked and maintained
+    \item \textbf{OR-015:} Peer reviews shall be conducted for all deliverables
+    \item \textbf{OR-016:} Quality gates shall be established for each development phase
+    \item \textbf{OR-017:} Defect tracking shall be maintained throughout project lifecycle
+\end{itemize}
+
+\subsection{Legal and Regulatory Requirements}
+
+\subsubsection{Data Privacy and Protection}
+\begin{itemize}
+    \item \textbf{OR-018:} System shall comply with applicable data protection regulations
+    \item \textbf{OR-019:} Privacy policy shall be clearly communicated to all users
+    \item \textbf{OR-020:} User consent shall be obtained for data processing
+    \item \textbf{OR-021:} Data retention policies shall be defined and implemented
+    \item \textbf{OR-022:} User data export and deletion procedures shall be available
+\end{itemize}
+
+\subsubsection{Intellectual Property}
+\begin{itemize}
+    \item \textbf{OR-023:} All source code shall be owned by the development team/academy
+    \item \textbf{OR-024:} Third-party components shall be properly licensed
+    \item \textbf{OR-025:} User agreement shall define terms of use and IP rights
+    \item \textbf{OR-026:} Academic content rights shall be clearly defined
+\end{itemize}
+
+\subsubsection{Compliance Requirements}
+\begin{itemize}
+    \item \textbf{OR-027:} System shall comply with educational regulations
+    \item \textbf{OR-028:} Financial reporting shall meet accounting standards
+    \item \textbf{OR-029:} Academic records shall be maintained as per board requirements
+    \item \textbf{OR-030:} Accessibility compliance shall be verified and documented
+\end{itemize}
+
+\subsection{System Support Requirements}
+
+\subsubsection{Training Requirements}
+\begin{itemize}
+    \item \textbf{OR-031:} Administrator training shall be provided before system launch
+    \item \textbf{OR-032:} Teacher training workshops shall be conducted
+    \item \textbf{OR-033:} Student orientation sessions shall be organized
+    \item \textbf{OR-034:} Training materials shall be updated with system changes
+\end{itemize}
+
+\subsubsection{Maintenance Requirements}
+\begin{itemize}
+    \item \textbf{OR-035:} Regular security updates shall be applied
+    \item \textbf{OR-036:} Performance monitoring shall be continuous
+    \item \textbf{OR-037:} Backup procedures shall be tested regularly
+    \item \textbf{OR-038:} System updates shall be scheduled during low-usage periods
+\end{itemize}
+
+\subsubsection{Disaster Recovery}
+\begin{itemize}
+    \item \textbf{OR-039:} Disaster recovery plan shall be documented and tested annually
+    \item \textbf{OR-040:} Critical system recovery time objective shall be 24 hours
+    \item \textbf{OR-041:} Data recovery point objective shall be 1 hour
+    \item \textbf{OR-042:} Backup systems shall be geographically distributed
+\end{itemize}
+
+\subsection{Sustainability Requirements}
+
+\subsubsection{Environmental Considerations}
+\begin{itemize}
+    \item \textbf{OR-043:} System shall optimize resource usage to minimize energy consumption
+    \item \textbf{OR-044:} Code efficiency shall be prioritized to reduce server load
+    \item \textbf{OR-045:} Sustainable hosting options shall be considered
+    \item \textbf{OR-046:} Paper usage reduction shall be tracked and reported
+\end{itemize}
+
+\subsubsection{Long-term Viability}
+\begin{itemize}
+    \item \textbf{OR-047:} System architecture shall support 5-year roadmap
+    \item \textbf{OR-048:} Technology stack shall use well-supported frameworks
+    \item \textbf{OR-049:} Knowledge transfer shall be planned for sustainability
+    \item \textbf{OR-050:} Exit strategy shall be defined for system decommissioning
+\end{itemize}
+
+\newpage
+
+\section*{Appendices}
+
+\subsection*{Appendix A: Glossary}
+
+\begin{tabularx}{\textwidth}{|l|X|}
+    \hline
+    \textbf{Term} & \textbf{Detailed Definition} \\
+    \hline
+    AAK Academy & Amar Ahmad Khan Academy, the educational institution for which this system is developed, offering Matric and Intermediate programs. \\
+    \hline
+    Matric Program & Secondary School Certificate program covering 9th and 10th grades, following Punjab Board curriculum. \\
+    \hline
+    Intermediate Program & Higher Secondary School Certificate program covering 11th and 12th grades, with pre-engineering, pre-medical, and commerce streams. \\
+    \hline
+    Automated Discount System & System feature that automatically applies percentage discounts to total fees based on number of subjects selected (10\% for 3 subjects, 20\% for 6 subjects). \\
+    \hline
+    Faculty Information Page & Public-facing section of the system that displays teacher profiles, qualifications, experience, and contact information. \\
+    \hline
+    Live Class Integration & System integration with Zoom video conferencing platform to facilitate virtual classrooms with attendance tracking. \\
+    \hline
+    Student Dashboard & Personalized interface for students displaying academic information, assignments, grades, and notifications. \\
+    \hline
+    Teacher Dashboard & Interface for teachers to manage courses, create assessments, grade submissions, and track student performance. \\
+    \hline
+    Admin Dashboard & Comprehensive management interface for administrators to oversee all system operations, users, and configurations. \\
+    \hline
+    Role-Based Access Control (RBAC) & Security model that restricts system access based on user roles (Student, Teacher, Admin) and associated permissions. \\
+    \hline
+    Academic Session & Annual academic cycle typically divided into two terms or semesters, with defined start and end dates. \\
+    \hline
+    Subject Selection & Process where students choose their courses for the academic session, with real-time fee calculation and discount application. \\
+    \hline
+    Learning Management System (LMS) & Platform for delivering educational content, managing assignments and assessments, and tracking student progress. \\
+    \hline
+    Grade Point Average (GPA) & Numerical representation of a student's academic performance, calculated based on grades across all subjects. \\
+    \hline
+    Audit Trail & Comprehensive record of system activities including user actions, data changes, and security events for accountability and troubleshooting. \\
+    \hline
+    Responsive Design & Web design approach that ensures optimal viewing and interaction experience across different devices and screen sizes. \\
+    \hline
+    CRUD Operations & Fundamental data operations: Create (add new records), Read (retrieve records), Update (modify records), Delete (remove records). \\
+    \hline
+    API Endpoint & Specific URL where an API can be accessed to perform certain operations or retrieve specific data. \\
+    \hline
+    Data Encryption & Process of converting data into coded form to prevent unauthorized access during transmission or storage. \\
+    \hline
+    Uptime & Measure of time a system is operational and available to users, typically expressed as a percentage of total time. \\
+    \hline
+    Mean Time Between Failures (MTBF) & Average time between system failures, used as a reliability metric. \\
+    \hline
+    Mean Time To Repair (MTTR) & Average time required to repair a failed system and restore normal operations. \\
+    \hline
+\end{tabularx}
+
+\subsection*{Appendix B: Analysis Models}
+
+\subsubsection*{B.1. Use Case Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{}
+\begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{SE Use Case .png}
+        \
+        \label{fig: Use Case Diagram}
+    \end{figure}
+        \caption{Use Case Diagram showing interactions between Students, Teachers, Administrators, and the AAK Academy Management System}
+    \label{fig:use_case}
+\end{figure}
+
+\subsubsection*{B.2. Context Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{}
+\begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{}
+\begin{figure}
+            \centering
+            \includegraphics[width=1.2\linewidth]{image.png}
+            \caption{Context Diagram}
+            \label{fig:placeholder}
+        \end{figure}
+             
+        \label{fig:placeholder}
+    \end{figure}
+      
+    \label{fig:context}
+\end{figure}
+
+
+
+
+
+\end{document}
