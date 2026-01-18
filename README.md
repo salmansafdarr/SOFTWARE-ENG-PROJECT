@@ -21,6 +21,7 @@ A clean and simple design that ensures students can easily navigate through the 
 
 **Figma Link**
 https://www.figma.com/proto/ydfJnbavV8oPTpYEaPAm69/AAK-Academy?t=4C8wB0b39reukdal-1
+**Meeting Minutes:**
 
 **GOOGLE SHEET LINK:**
 https://docs.google.com/spreadsheets/d/1eo0ZMGZb7HplMqGAqg5bxLgZFSzDSiKgfLqiasl9jeA/edit?gid=0#gid=0
