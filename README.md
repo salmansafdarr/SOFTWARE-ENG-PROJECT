@@ -19,6 +19,9 @@ Students can collaborate on assignments and projects, communicate effectively, a
 5. **User-Friendly Interface:**
 A clean and simple design that ensures students can easily navigate through the platform and focus on their learning.
 
+**Figma Link**
+https://www.figma.com/proto/ydfJnbavV8oPTpYEaPAm69/AAK-Academy?t=4C8wB0b39reukdal-1
+
 **Group Details:**
 
 | **Name**             | **Roll No.**        | **Email**                         |
