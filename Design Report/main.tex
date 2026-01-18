@@ -1,0 +1,470 @@
+\documentclass[12pt,a4paper]{report}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tocloft}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=blue,
+    pdftitle={AAK Academy Management System - Design Report},
+    pdfauthor={Salman Safdar, Muhammad Haris, Farwa Imran},
+}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{AAK Academy Management System}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Chapter and section formatting
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+% Caption setup
+\captionsetup{font=small,labelfont=bf}
+
+% Document begins
+\begin{document}
+
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries Design Report\par}
+    \vspace{0.5cm}
+    {\LARGE AAK Academy Management System\par}
+    \vspace{2cm}
+    
+    {\Large\bfseries Course:\par}
+    {\large Software Engineering (CSC-225)\par}
+    \vspace{2cm}
+    
+    {\Large\bfseries Team Members:\par}
+    \vspace{0.5cm}
+    {\large
+    Salman Safdar (NUM-BSCS-2024-70)\\
+    Muhammad Haris Ajmal (NUM-BSCS-2024-49)\\
+    Farwa Imran (NUM-BSCS-2024-22)\par}
+    
+    \vfill
+    
+    {\large Submission Date: January 18, 2026\par}
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% List of Figures
+\listoffigures
+\newpage
+
+% List of Tables
+\listoftables
+\newpage
+
+% Chapter 1: Introduction
+\chapter{Introduction}
+\label{ch:introduction}
+
+The objective of this Design Report is to translate the functional and non-functional requirements of the AAK Academy Management System into a comprehensive technical blueprint. This system is designed to automate academic and administrative operations for Matric and Intermediate programs at AAK Academy.
+
+The design focuses on key features including:
+\begin{itemize}[itemsep=0.5em]
+    \item Subject selection with real-time fee calculation
+    \item Automated fee calculation with tiered discounts (10\% and 20\%)
+    \item Live class integration via Zoom API
+    \item Comprehensive quiz and assignment management
+    \item Role-based access control for Students, Teachers, and Administrators
+\end{itemize}
+
+This report serves as the final bridge between requirement gathering and system implementation, providing detailed architectural and design specifications that will guide the development phase.
+
+% Chapter 2: Design Assumptions and Constraints
+\chapter{Design Assumptions and Constraints}
+\label{ch:assumptions}
+
+To ensure the system is built within practical limits and realistic expectations, the following parameters have been identified and documented.
+
+\section{Assumptions}
+\label{sec:assumptions}
+
+The following assumptions form the basis of the system design:
+
+\begin{itemize}[itemsep=0.5em]
+    \item \textbf{User Roles:} The design assumes three primary actors: Students (9th--12th grade), Teachers (subject experts), and Administrators (system managers).
+    
+    \item \textbf{Connectivity:} Users are assumed to have a minimum 2 Mbps broadband connection for reliable access to learning materials and Zoom sessions.
+    
+    \item \textbf{Browser Standards:} It is assumed that users will access the system through modern browsers such as Chrome 80+, Firefox 75+, or Safari 12+.
+\end{itemize}
+
+\section{Constraints}
+\label{sec:constraints}
+
+The following constraints limit the scope and implementation of the system:
+
+\begin{itemize}[itemsep=0.5em]
+    \item \textbf{Technology Stack:} The development is constrained to open-source tools including HTML5, CSS3, JavaScript, and MySQL to maintain low licensing costs.
+    
+    \item \textbf{Timeline:} Project implementation must be completed within the academic semester schedule.
+    
+    \item \textbf{Language:} The initial release is constrained to support English only.
+    
+    \item \textbf{Security:} Authentication is restricted to email-based recovery, and the system must lock accounts after 5 consecutive failed login attempts.
+\end{itemize}
+
+% Chapter 3: Key Design Decisions
+\chapter{Key Design Decisions}
+\label{ch:design_decisions}
+
+The following architectural and design choices were made to satisfy system goals and ensure maintainability, scalability, and performance:
+
+\begin{itemize}[itemsep=0.5em]
+    \item \textbf{Process Decomposition in DFDs:} Processes are decomposed by user role (Student, Teacher, Admin) to ensure that the core logic for the Automated Discount System remains independent from general user profile management.
+    
+    \item \textbf{Class Relationships:}
+    \begin{itemize}
+        \item \textit{Composition:} Used for the Quiz-Question relationship; questions cannot exist without a parent quiz.
+        \item \textit{Aggregation:} Used for the Course-Student relationship, as students exist independently of a specific course enrollment.
+    \end{itemize}
+    
+    \item \textbf{Functional Distribution:} Functionality is distributed across multiple sequence diagrams (e.g., separate flows for ``Fee Payment'' and ``Quiz Attempt'') to prevent over-complexity in a single model.
+    
+    \item \textbf{Third-Party Integration:} We decided to integrate the Zoom API for live classes rather than building a custom video solution to ensure stability and professional features.
+\end{itemize}
+
+% Chapter 4: Requirements-Design Traceability
+\chapter{Requirements--Design Traceability}
+\label{ch:traceability}
+
+This chapter maps key requirements from the Software Requirements Specification (SRS) to their corresponding design artifacts, ensuring complete coverage and traceability throughout the development process.
+
+\section{Traceability Matrix}
+\label{sec:traceability_matrix}
+
+Table~\ref{tab:traceability} presents the comprehensive mapping between functional and non-functional requirements and their design implementations.
+
+\begin{longtable}{@{}p{0.12\textwidth}p{0.45\textwidth}p{0.38\textwidth}@{}}
+\caption{Requirements--Design Traceability Matrix}
+\label{tab:traceability} \\
+\toprule
+\textbf{ID} & \textbf{Requirement Description} & \textbf{Design Artifact} \\
+\midrule
+\endfirsthead
+
+\multicolumn{3}{c}%
+{{\tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Requirement Description} & \textbf{Design Artifact} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+FR001 & Student Registration: Allow new students to create accounts with validation. & Use Case: Register; DFD: Student Registration \\
+\midrule
+
+FR002 & Teacher Registration: Allow admin to create faculty accounts. & Use Case: Register (Faculty); DFD: Faculty Registration \\
+\midrule
+
+FR003 & User Login: Authenticate users based on roles. & Use Case: Login; Sequence Diagram: Login Interaction \\
+\midrule
+
+FR004 & Access Control: Enforce role-based permissions. & Design Decision: RBAC; Class Diagram: User Roles \\
+\midrule
+
+FR008 & Subject Selection: Allow subject choice with real-time fee calculation. & Use Case: Manage Subjects; Activity Diagram: Subject Selection \\
+\midrule
+
+FR011 & Online Quiz System: Provide quiz taking with timers. & Use Case: Attempt Quizzes; Class Diagram: Quiz Class \\
+\midrule
+
+FR013 & Live Classes: Integrate with Zoom for virtual classrooms. & Use Case: Join Live Classes; Component Diagram: Zoom API \\
+\midrule
+
+FR029 & Automated Discount: Apply 10\% for 3 subjects and 20\% for 6 subjects. & Use Case: Fee Calculation; DFD: Fee Information \\
+\midrule
+
+FR030 & Report Generation: Generate academic and financial reports. & Use Case: Generate Reports; DFD: Student Results \\
+\midrule
+
+NFR001 & Performance: Page load time under 3 seconds. & System Architecture: Web Tier Optimization \\
+\midrule
+
+NFR018 & Security: Passwords stored using bcrypt hashing. & Design Decision: Secure Auth; Class Diagram: User Attributes \\
+\midrule
+
+NFR053 & Backup: Weekly full and daily incremental backups. & Use Case: System Configuration; Maintenance Plan \\
+
+\end{longtable}
+
+% Chapter 5: System Design Diagrams
+\chapter{System Design Diagrams}
+\label{ch:design_diagrams}
+
+This chapter provides a detailed technical description of each diagram required for the AAK Academy Management System Design Report. These diagrams visualize system behavior and structure while directly supporting the SRS requirements.
+
+\section{Use Case Diagram}
+\label{sec:use_case}
+
+The Use Case Diagram (Figure~\ref{fig:use_case}) serves as the high-level overview of system functionality.
+
+\begin{itemize}[itemsep=0.5em]
+    \item \textbf{Actors:} It identifies three primary human actors (Student, Faculty, and Admin) and external systems like the Zoom API and Payment Gateway.
+    
+    \item \textbf{Core Interactions:} It maps essential tasks such as Register, Login, Manage Subjects, and Join Live Classes.
+    
+    \item \textbf{Logical Links:} It uses \texttt{<<include>>} relationships to show that Manage Subjects automatically triggers Fee Calculation with tiered discounts.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.9\textwidth]{use case 1.png}}
+    \caption{Use Case Diagram for AAK Academy Management System}
+    \label{fig:use_case}
+\end{figure}
+
+\section{Data Flow Diagrams (DFD)}
+\label{sec:dfd}
+
+Data Flow Diagrams illustrate how data moves through the system, starting from a high-level view down to specific processes.
+
+\subsection{Level 0 (Context Diagram)}
+\label{subsec:dfd_level0}
+
+Figure~\ref{fig:dfd_level0} shows the entire system as a single process interacting with external entities. For example, it shows Student providing ``paid fee'' and receiving ``marks and result''.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.85\textwidth]{DFD Level 0.drawio.png}}
+    \caption{Data Flow Diagram -- Level 0 (Context Diagram)}
+    \label{fig:dfd_level0}
+\end{figure}
+
+\subsection{Level 1 DFD}
+\label{subsec:dfd_level1}
+
+Figure~\ref{fig:dfd_level1} breaks the system into major functional modules like User Management, Academic Management, and Financial Management.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.9\textwidth]{dfd L 1.drawio.png}}
+    \caption{Data Flow Diagram -- Level 1}
+    \label{fig:dfd_level1}
+\end{figure}
+
+\subsection{Level 2 DFD}
+\label{subsec:dfd_level2}
+
+Figure~\ref{fig:dfd_level2} provides the most detail, such as the specific steps inside the Fee Calculation process where the 10\% or 20\% discount logic is applied.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.9\textwidth]{DFD Level 2.drawio.png}}
+    \caption{Data Flow Diagram -- Level 2 (Fee Calculation Detail)}
+    \label{fig:dfd_level2}
+\end{figure}
+
+\section{Activity Diagrams}
+\label{sec:activity}
+
+Activity diagrams represent the operational workflows and decision logic for various tasks within the system.
+
+\subsection{Student Workflow}
+\label{subsec:activity_student}
+
+Figure~\ref{fig:activity_student} models the path from login to subject selection, highlighting the decision nodes for applying 10\% (for 3 subjects) or 20\% (for 6 subjects) automatic discounts.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.75\textwidth]{Activity diagram student.drawio.png}}
+    \caption{Activity Diagram -- Student Workflow}
+    \label{fig:activity_student}
+\end{figure}
+
+\subsection{Teacher Workflow}
+\label{subsec:activity_teacher}
+
+Figure~\ref{fig:activity_teacher} shows the process of uploading course content, including a validation step to ensure file types (PDF/Video) are correct before notifying students.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.75\textwidth]{Activity diagram Teachher.drawio.png}}
+    \caption{Activity Diagram -- Teacher Workflow}
+    \label{fig:activity_teacher}
+\end{figure}
+
+\subsection{Admin Workflow}
+\label{subsec:activity_admin}
+
+Figure~\ref{fig:activity_admin} details the registration approval process, from receiving a notification to verifying documents and generating a Student ID.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.75\textwidth]{AActivity Diagram Admin.drawio.png}}
+    \caption{Activity Diagram -- Admin Workflow}
+    \label{fig:activity_admin}
+\end{figure}
+
+\subsection{Overall System Activity}
+\label{subsec:activity_overall}
+
+Figure~\ref{fig:activity_overall} presents the comprehensive system activity diagram showing the interaction of all workflows.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.9\textwidth]{Activity Diagram.drawio.png}}
+    \caption{Overall System Activity Diagram}
+    \label{fig:activity_overall}
+\end{figure}
+
+\section{Sequence Diagrams}
+\label{sec:sequence}
+
+Sequence Diagrams model the time-ordered interactions between objects for key functionalities. These are used for complex tasks to show exactly how the User, Interface, Controller, and Database communicate.
+
+\subsection{Student Registration and Login}
+\label{subsec:seq_registration}
+
+Figure~\ref{fig:seq_registration} illustrates the interaction flow for student registration and authentication processes.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.9\textwidth]{Sequence Diagram student Registration and login.drawio.png}}
+    \caption{Sequence Diagram -- Student Registration and Login}
+    \label{fig:seq_registration}
+\end{figure}
+
+\subsection{Fee Payment and Administration}
+\label{subsec:seq_fee}
+
+Figure~\ref{fig:seq_fee} demonstrates the sequence of operations involved in fee calculation, payment processing, and administrative oversight.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.9\textwidth]{Sequence diagram fee payment and administration.drawio.png}}
+    \caption{Sequence Diagram -- Fee Payment and Administration}
+    \label{fig:seq_fee}
+\end{figure}
+
+\subsection{Course Content Management}
+\label{subsec:seq_content}
+
+Figure~\ref{fig:seq_content} shows the workflow for teachers uploading and managing course materials.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.9\textwidth]{Sequence diagram Course managment and learning acces.drawio.png}}
+    \caption{Sequence Diagram -- Course Content Management}
+    \label{fig:seq_content}
+\end{figure}
+
+\subsection{Assignment Submission and Assessment}
+\label{subsec:seq_assignment}
+
+Figure~\ref{fig:seq_assignment} depicts the complete cycle of assignment submission by students and grading by teachers.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.9\textwidth]{Sequence diagram assignment submission and evaluation.drawio.png}}
+    \caption{Sequence Diagram -- Assignment Submission and Assessment}
+    \label{fig:seq_assignment}
+\end{figure}
+
+\subsection{Complete System Sequence Diagram}
+\label{subsec:seq_complete}
+
+Figure~\ref{fig:seq_complete} presents the comprehensive sequence diagram showing all major system interactions.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.95\textwidth]{Sequence Diagram AAk Whole.drawio.png}}
+    \caption{Complete AAK Academy System Sequence Diagram}
+    \label{fig:seq_complete}
+\end{figure}
+
+\section{Class Diagram}
+\label{sec:class}
+
+The Class Diagram (Figure~\ref{fig:class}) reflects the static structure of the system, including attributes and relationships.
+
+\begin{itemize}[itemsep=0.5em]
+    \item \textbf{Structure:} It features a User base class with subclasses for Student, Teacher, and Admin to handle Role-Based Access Control (RBAC).
+    
+    \item \textbf{Relationships:} It uses Composition for the Enrollment and Subject relationship and Aggregation for CourseContent managed by Teachers.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.95\textwidth]{Class Diagram follows use cases.drawio.png}}
+    \caption{Class Diagram for AAK Academy Management System}
+    \label{fig:class}
+\end{figure}
+
+\section{Component Diagram}
+\label{sec:component}
+
+The Component Diagram (Figure~\ref{fig:component}) illustrates the high-level software components and their dependencies.
+
+\begin{itemize}[itemsep=0.5em]
+    \item \textbf{Modular Design:} It shows the relationship between the Web UI, the Business Logic Layer (handling discounts and grading), and the Database Tier.
+    
+    \item \textbf{Integrations:} It highlights dependencies on external components like the Zoom REST API for live class functionality.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.85\textwidth]{Component Diagram.drawio.png}}
+    \caption{Component Diagram showing System Architecture}
+    \label{fig:component}
+\end{figure}
+
+% Chapter 6: Project Resources
+\chapter{Project Resources}
+\label{ch:resources}
+
+This chapter provides links to external resources and repositories associated with the AAK Academy Management System project.
+
+\section{Repository and Prototype Links}
+\label{sec:links}
+
+\begin{itemize}[itemsep=0.5em]
+    \item \textbf{GitHub Repository:} \url{https://github.com/salmansafdarr/SOFTWARE-ENG-PROJECT}
+    \item \textbf{Figma Interactive Prototype:} \url{https://www.figma.com/proto/ydfJnbavV8oPTpYEaPAm69/AAK-Academy?node-id=0-1&t=1t8M02Iw2xl4fXUc-1}
+\end{itemize}
+
+% Appendix (if needed)
+\appendix
+
+% Bibliography (if needed)
+% \bibliographystyle{plain}
+% \bibliography{references}
+
+\end{document}
